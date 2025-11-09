@@ -1,0 +1,42 @@
+# crm-auth-service-prod.yml
+# Configuration pour la production
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:prod-db}:${DB_PORT:5432}/authservice_prod
+    username: ${DB_USERNAME_PROD}
+    password: ${DB_PASSWORD_PROD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 1200000
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT:6379}
+
+  jpa:
+    show-sql: false
+
+# JWT Secret DOIT venir de variables d'environnement
+jwt:
+  secret: ${JWT_SECRET}
+
+# Super Admin (variables d'environnement)
+app:
+  super-admin:
+    email: ${SUPER_ADMIN_EMAIL}
+    password: ${SUPER_ADMIN_PASSWORD}
+    first-name: ${SUPER_ADMIN_FIRSTNAME}
+    last-name: ${SUPER_ADMIN_LASTNAME}
+
+# Logging production
+logging:
+  level:
+    root: WARN
+    com.crm.AuthService: INFO
+    org.flywaydb: INFO

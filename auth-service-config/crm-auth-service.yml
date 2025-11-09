@@ -1,0 +1,51 @@
+# crm-auth-service.yml
+# Configuration commune à tous les environnements
+# Repo Git : https://github.com/lachgar03/CRM-Config-Server.git
+
+spring:
+  application:
+    name: crm-auth-service
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none  # Flyway gère tout
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+  flyway:
+    enabled: false  # Géré manuellement dans DatabaseInitializer
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration/shared,classpath:db/migration/per_tenant
+    schemas: public
+    table: flyway_schema_history_shared
+
+  cache:
+    type: redis
+
+# JWT Configuration
+jwt:
+  expiration: 86400000      # 24h en millisecondes
+  refresh-expiration: 604800000  # 7 jours
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.crm.AuthService: DEBUG
+    org.flywaydb: DEBUG
+    org.springframework.cloud.config: DEBUG
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,flyway
+  endpoint:
+    health:
+      show-details: always

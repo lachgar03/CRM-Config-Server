@@ -1,0 +1,41 @@
+# crm-auth-service-dev.yml
+# Configuration pour l'environnement de développement
+# Docker Compose utilisé pour PostgreSQL et Redis
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/authservice_dev  # Port Docker
+    username: dev_user
+    password: dev_pass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 1200000
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# JWT Secret (Dev uniquement - générer un vrai en prod)
+jwt:
+  secret: devSecretKeyForLocalDevelopmentOnlyDoNotUseInProduction123456789
+
+# Super Admin Bootstrap
+app:
+  super-admin:
+    email: admin@crm.com
+    password: SuperAdmin123!
+    first-name: Super
+    last-name: Admin
+
+# Logging plus verbeux en dev
+logging:
+  level:
+    root: DEBUG
+    com.crm.AuthService: TRACE
+    org.flywaydb: TRACE
+    org.springframework.security: DEBUG

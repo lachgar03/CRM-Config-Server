@@ -1,0 +1,31 @@
+# crm-auth-service-test.yml
+# Configuration pour les tests
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authservice_test
+    username: test_user
+    password: test_pass
+    driver-class-name: org.postgresql.Driver
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+jwt:
+  secret: testSecretKeyForUnitTestsOnly
+  expiration: 60000  # 1 minute pour tests
+  refresh-expiration: 120000  # 2 minutes
+
+app:
+  super-admin:
+    email: test@admin.com
+    password: TestPassword123!
+    first-name: Test
+    last-name: Admin
+
+logging:
+  level:
+    root: WARN
+    com.crm.AuthService: DEBUG
