@@ -11,9 +11,10 @@ spring:
       idle-timeout: 300000
       max-lifetime: 1200000
 
-  redis:
-    host: localhost
-    port: 6379
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 jwt:
   secret: devSecretKeyForLocalDevelopmentOnlyDoNotUseInProduction123456789
