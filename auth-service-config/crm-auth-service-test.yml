@@ -1,5 +1,4 @@
-# crm-auth-service-test.yml
-# Configuration pour les tests
+
 
 spring:
   datasource:
@@ -15,8 +14,8 @@ spring:
 
 jwt:
   secret: testSecretKeyForUnitTestsOnly
-  expiration: 60000  # 1 minute pour tests
-  refresh-expiration: 120000  # 2 minutes
+  expiration: 60000
+  refresh-expiration: 120000
 
 app:
   super-admin:
