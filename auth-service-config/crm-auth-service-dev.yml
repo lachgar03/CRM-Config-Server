@@ -18,7 +18,8 @@ spring:
 
 jwt:
   secret: devSecretKeyForLocalDevelopmentOnlyDoNotUseInProduction123456789
-
+  expiration: 86400000
+  refresh-expiration: 604800000
 app:
   super-admin:
     email: admin@crm.com
