@@ -2,7 +2,6 @@ spring:
   application:
     name: crm-auth-service
 
-
   datasource:
     url: jdbc:postgresql://localhost:${DB_PORT:5433}/${POSTGRES_DB:authservice_dev}
     username: ${POSTGRES_USER:dev_user}
@@ -31,9 +30,6 @@ spring:
       host: localhost
       port: 6379
       timeout: 2000ms
-
-  profiles:
-    active: ${SPRING_PROFILES_ACTIVE:dev}
 
 jwt:
   secret: ${JWT_SECRET:changeMeInProduction}
